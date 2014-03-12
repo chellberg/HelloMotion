@@ -1,15 +1,12 @@
 class TapController < UIViewController
   def viewDidLoad
     super
-
     self.view.backgroundColor = UIColor.whiteColor
     @label = UILabel.alloc.initWithFrame(CGRectZero)
-    @label.text = "Taps"
+    @label.text = "You have no messages"
     @label.sizeToFit
     @label.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
     self.view.addSubview @label
-
-    self.title = "Tap (#{self.navigationController.viewControllers.count})"
 
     right_button = UIBarButtonItem.alloc.initWithTitle("Push", style: UIBarButtonItemStyleBordered, target:self, action:'push' )
     self.navigationItem.rightBarButtonItem = right_button
@@ -22,7 +19,8 @@ class TapController < UIViewController
 
   def initWithNibName(name, bundle: bundle)
     super
-    self.tabBarItem = UITabBarItem.alloc.initWithTabBarSystemItem(UITabBarSystemItemFavorites, tag: 1)
+    self.tabBarItem = UITabBarItem.alloc.initWithTitle('Messages', image:UIImage.imageNamed('messages.png'), tag: 1)
     self
   end
+
 end

@@ -10,5 +10,7 @@ end
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
-  app.name = 'HelloMotion'
+  app.name = 'IASTA'
+  app.device_family = :ipad
+  app.icons = ['Icon.jpg']
 end
