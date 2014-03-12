@@ -30,7 +30,7 @@ class WebViewController < UIViewController
     Motion::Layout.new do |layout|
       layout.view view
       layout.subviews toolbar: @toolbar
-      layout.vertical "|->=20-[toolbar]-54-|"
+      layout.vertical "|->=20-[toolbar]-56-|"
       layout.horizontal "|-[toolbar]-|"
     end
 
@@ -42,10 +42,6 @@ class WebViewController < UIViewController
 
   def preferredStatusBarStyle
     UIStatusBarStyleLightContent
-  end
-
-  def webViewDidStartLoad(webView)
-    UIApplication.sharedApplication.networkActivityIndicatorVisible = true
   end
 
   def initWithNibName(name, bundle: bundle)

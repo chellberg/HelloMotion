@@ -1,14 +1,18 @@
-class ContactsController < UIViewController
+class DetailController < UIViewController
   def viewDidLoad
      super
 
      @table = UITableView.alloc.initWithFrame(self.view.bounds)
-     self.view.addSubview @table
+     Motion::Layout.new do |layout|
+      layout.view self.view
+      layout.subviews table: @table
+      layout.vertical "|-20-[table]-0-|"
+      layout.horizontal "|-0-[table]-0-|"
+    end
 
      @table.dataSource = self
      @table.delegate = self
-     @impact = ['Corin Chellberg', 'Matt Jonker', 'Moses Dwaram', 'Josh Kramer', 'Daniel Doezema', 'Tim Neville', 'Zach Thompson', 'Yoshi Tanno']
-     @data = @impact + @impact + @impact
+     @data = ['Name: NotTheActualUserYouClicked', 'Company: IASTA', 'Email: NotTheActualUserYouClicked@stubbed.com', 'Work Phone: 317-867-5309', 'Mobile Phone: 317-444-4444', "Driver's license expiration date: yesterday", 'Etc.']
   end
 
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -21,30 +25,16 @@ class ContactsController < UIViewController
 
     cell.textLabel.text = @data[indexPath.row]
     cell
-
   end
 
   def tableView(tableView, numberOfRowsInSection: section)
     @data.count
   end
 
-  def push
-    new_controller = ContactsController.alloc.initWithNibName(nil, bundle: nil)
-    self.navigationController.pushViewController(new_controller, animated: true)
-  end
-
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    self.push
-    # alert = UIAlertView.alloc.init
-    # alert.message = "#{@data[indexPath.row]} tapped!"
-    # alert.show
+    App.alert("Nope.", {cancel_button_title: "Ok :("})
   end
 
-  def initWithNibName(name, bundle: bundle)
-    super
-      self.tabBarItem = UITabBarItem.alloc.initWithTabBarSystemItem(UITabBarSystemItemContacts, tag: 1)
-    self
-  end
 end
 

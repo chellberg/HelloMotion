@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
+require 'sugarcube-factories'
+require 'sugarcube-localized'
 
 begin
   require 'bundler'
